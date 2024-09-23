@@ -1,6 +1,6 @@
 output "ssl_cert_arn" {
   description = "The ARN of the SSL Certificate"
-  value = aws_acm_certificate.ssl_certficate.arn
+  value = aws_acm_certificate.ssl_certificate.arn
 }
 
 output "route53_zone_id" {
