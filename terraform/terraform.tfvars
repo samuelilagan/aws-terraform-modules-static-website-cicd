@@ -4,3 +4,7 @@ bucket_name = "terraform-state-bucket-samuelilagan"
 table_name = "terraform_state_locks"
 root_domain = "samuel-ilagan-resume.com"
 dns_record_ttl = 300
+website_bucket = "samuel-ilagan-resume.com"
+force_destroy = false
+index_document = "index.html"
+versioning_enabled = "Enabled"
