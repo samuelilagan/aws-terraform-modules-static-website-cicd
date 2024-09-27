@@ -31,6 +31,8 @@ module "s3_website" {
   versioning_enabled                  = var.versioning_enabled
   index_document                      = var.index_document
   region                              = var.region
+
+  cloudfront_distribution_arn         = module.cloudfront.cloudfront_distribution_arn
 }
 
 module "cloudfront" {
