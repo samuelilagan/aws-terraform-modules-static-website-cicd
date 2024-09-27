@@ -40,5 +40,5 @@ module "cloudfront" {
   route53_zone_id                     = module.dns_acm.route53_zone_id
   ssl_cert_arn                        = module.dns_acm.ssl_cert_arn
   index_document                      = module.s3_website.index_document
-  route_domain                        = module.dns_acm.route_domain
+  root_domain                        = module.dns_acm.root_domain
 }
