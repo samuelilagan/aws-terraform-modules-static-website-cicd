@@ -3,6 +3,7 @@ iam_user_name = "terraform_user"
 bucket_name = "terraform-state-bucket-samuelilagan"
 table_name = "terraform_state_locks"
 dynamodb_table_name = "views"
+lambda_function_name = "VisitorCounterLambda"
 root_domain = "samuel-ilagan-resume.com"
 dns_record_ttl = 300
 website_bucket = "samuel-ilagan-resume.com"

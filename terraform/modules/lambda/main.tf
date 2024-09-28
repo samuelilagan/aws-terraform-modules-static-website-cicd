@@ -36,11 +36,3 @@ resource "aws_iam_role_policy_attachment" "lambda_dynamodb_access" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
 }
-
-resource "aws_lambda_permission" "allow_api_gateway" {
-  statement_id  = "AllowAPIGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.visitor_counter_lambda.function_name
-  principal     = "apigateway.amazonaws.com"
-  source_arn    = var.api_gateway_invoke_arn
-}

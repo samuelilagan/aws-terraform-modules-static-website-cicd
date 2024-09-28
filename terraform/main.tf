@@ -49,3 +49,9 @@ module "dynamodb" {
   source                              = "./modules/dynamodb_table"
   dynamodb_table_name                 = var.dynamodb_table_name
 }
+
+module "lambda" {
+  source                              = "./modules/lambda" 
+  lambda_function_name                = var.lambda_function_name
+  dynamodb_table_name                 = module.dynamodb.dynamodb_table_name
+}
