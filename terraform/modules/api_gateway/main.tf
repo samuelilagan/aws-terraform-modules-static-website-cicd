@@ -22,7 +22,7 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   http_method = aws_api_gateway_method.counter_method.http_method
   type        = "AWS_PROXY"
   integration_http_method = "POST"
-  uri         = aws_lambda_function.visitor_counter_lambda.invoke_arn
+  uri         = var.lambda_function_arn  # Reference the variable here
 }
 
 resource "aws_api_gateway_deployment" "api_deployment" {

@@ -1,4 +1,3 @@
-output "lambda_function_arn" {
-  description = "The ARN of the Lambda function"
-  value       = aws_lambda_function.visitor_counter_lambda.arn
+output "visitor_counter_lambda_arn" {
+  value = aws_lambda_function.visitor_counter_lambda.arn
 }
