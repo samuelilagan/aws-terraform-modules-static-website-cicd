@@ -12,7 +12,7 @@ resource "aws_api_gateway_resource" "counter_resource" {
 resource "aws_api_gateway_method" "counter_method" {
   rest_api_id   = aws_api_gateway_rest_api.visitor_counter_api.id
   resource_id   = aws_api_gateway_resource.counter_resource.id
-  http_method   = "ANY"
+  http_method   = "ANY"  # Change this to "GET" or "POST" if needed
   authorization = "NONE"
 }
 
@@ -81,4 +81,33 @@ resource "aws_api_gateway_integration_response" "cors_options_integration_respon
   }
 
   depends_on = [aws_api_gateway_integration.mock_integration]  # Ensure this runs after the mock integration
+}
+
+# CORS configuration for the counter_method
+resource "aws_api_gateway_method_response" "cors_counter_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.visitor_counter_api.id
+  resource_id = aws_api_gateway_resource.counter_resource.id
+  http_method = aws_api_gateway_method.counter_method.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin"      = true
+    "method.response.header.Access-Control-Allow-Methods"    = true
+    "method.response.header.Access-Control-Allow-Headers"     = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "cors_counter_integration_response" {
+  rest_api_id = aws_api_gateway_rest_api.visitor_counter_api.id
+  resource_id = aws_api_gateway_resource.counter_resource.id
+  http_method = aws_api_gateway_method.counter_method.http_method
+  status_code = aws_api_gateway_method_response.cors_counter_method_response.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin"      = "'*'"
+    "method.response.header.Access-Control-Allow-Methods"    = "'OPTIONS,GET,POST'"  # Adjust as needed
+    "method.response.header.Access-Control-Allow-Headers"     = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+  }
+
+  depends_on = [aws_api_gateway_integration.lambda_integration]  # Ensure this runs after the lambda integration
 }
