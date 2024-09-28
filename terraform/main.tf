@@ -60,4 +60,5 @@ module "api_gateway" {
   source                           = "./modules/api_gateway"
   api_name                         = var.api_gateway_name
   lambda_function_arn              = module.lambda.visitor_counter_lambda_arn
+  region                           = var.region  
 }
