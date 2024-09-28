@@ -28,5 +28,10 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin': '*',  # Or specify your domain
+            'Access-Control-Allow-Methods': 'OPTIONS,GET,POST',
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+        },
         'body': json.dumps({'visitor_count': visitor_count})
     }
