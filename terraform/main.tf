@@ -55,3 +55,9 @@ module "lambda" {
   lambda_function_name                = var.lambda_function_name
   dynamodb_table_name                 = module.dynamodb.dynamodb_table_name
 }
+
+module "api_gateway" {
+  source                           = "./modules/api_gateway"
+  api_gateway_name                 = var.api_gateway_name
+  lambda_function_name             = module.lambda.lambda_function_name
+}

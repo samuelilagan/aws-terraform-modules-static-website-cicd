@@ -1,11 +1,7 @@
 variable "api_name" {
-  description = "Name of the API Gateway"
+  description = "The name of the API Gateway"
 }
 
-variable "api_resource_path" {
-  description = "Path of the API resource"
-}
-
-variable "stage_name" {
-  description = "Stage name for API Gateway deployment"
+variable "lambda_function_arn" {
+  description = "The ARN of the Lambda function to integrate with API Gateway"
 }

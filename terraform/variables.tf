@@ -10,3 +10,4 @@ variable "force_destroy" {}
 variable "versioning_enabled" {}
 variable "index_document" {}
 variable "lambda_function_name" {} 
+variable "api_gateway_name" {}
