@@ -40,12 +40,19 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   source_arn    = "${aws_api_gateway_deployment.api_deployment.execution_arn}/*"
 }
 
-# Enable CORS for OPTIONS method
+# Enable CORS for OPTIONS method with mock integration
 resource "aws_api_gateway_method" "options_method" {
   rest_api_id   = aws_api_gateway_rest_api.visitor_counter_api.id
   resource_id   = aws_api_gateway_resource.counter_resource.id
   http_method   = "OPTIONS"
   authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "mock_integration" {
+  rest_api_id             = aws_api_gateway_rest_api.visitor_counter_api.id
+  resource_id             = aws_api_gateway_resource.counter_resource.id
+  http_method             = aws_api_gateway_method.options_method.http_method
+  type                    = "MOCK"
 }
 
 resource "aws_api_gateway_method_response" "cors_options_method_response" {
