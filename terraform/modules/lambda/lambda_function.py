@@ -1,10 +1,10 @@
 import json
 import boto3
 
-def lambda_handler(event, context):
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('views')  # Use your DynamoDB table name
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('views')  
 
+def lambda_handler(event, context):
     # Retrieve the current visitor count
     response = table.get_item(Key={'id': 'visitor_count'})
     
