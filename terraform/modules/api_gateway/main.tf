@@ -35,7 +35,7 @@ resource "aws_api_gateway_deployment" "api_deployment" {
 resource "aws_lambda_permission" "allow_api_gateway" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.visitor_counter_lambda.function_name
+  function_name = var.lambda_function_arn  # Use the ARN here instead of function name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = aws_api_gateway_deployment.api_deployment.execution_arn
+  source_arn    = "${aws_api_gateway_deployment.api_deployment.execution_arn}/*"  
 }
