@@ -43,8 +43,8 @@ resource "aws_lambda_permission" "allow_api_gateway" {
 # Enable CORS
 resource "aws_api_gateway_method_response" "cors_method_response" {
   rest_api_id = aws_api_gateway_rest_api.visitor_counter_api.id
-  resource_id = aws_api_gateway_resource.visitor_counter_resource.id
-  http_method = aws_api_gateway_method.visitor_counter_method.http_method
+  resource_id = aws_api_gateway_resource.counter_resource.id
+  http_method = aws_api_gateway_method.counter_method.http_method
   status_code = "200"
 
   response_parameters = {
@@ -54,8 +54,8 @@ resource "aws_api_gateway_method_response" "cors_method_response" {
 
 resource "aws_api_gateway_integration_response" "cors_integration_response" {
   rest_api_id = aws_api_gateway_rest_api.visitor_counter_api.id
-  resource_id = aws_api_gateway_resource.visitor_counter_resource.id
-  http_method = aws_api_gateway_method.visitor_counter_method.http_method
+  resource_id = aws_api_gateway_resource.counter_resource.id
+  http_method = aws_api_gateway_method.counter_method.http_method
   status_code = aws_api_gateway_method_response.cors_method_response.status_code
 
   response_parameters = {
