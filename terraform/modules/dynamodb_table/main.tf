@@ -9,6 +9,6 @@ resource "aws_dynamodb_table" "visitor_count_table" {
   }
 
   tags = {
-    Name = "VisitorCountTable"
+    Name = var.dynamodb_table_name
   }
 }
