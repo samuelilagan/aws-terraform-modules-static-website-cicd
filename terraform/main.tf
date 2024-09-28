@@ -44,3 +44,8 @@ module "cloudfront" {
   index_document                      = module.s3_website.index_document
   root_domain                         = module.dns_acm.root_domain
 }
+
+module "dynamodb" {
+  source                              = "./modules/dynamodb_table"
+  dynamodb_table_name                 = var.dynamodb_table_name
+}
