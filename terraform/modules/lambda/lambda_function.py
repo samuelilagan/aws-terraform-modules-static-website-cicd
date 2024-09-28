@@ -26,12 +26,8 @@ def lambda_handler(event, context):
         ExpressionAttributeValues={':val1': visitor_count}
     )
 
+    # Convert visitor_count to int to avoid Decimal serialization issue
     return {
         'statusCode': 200,
-        'headers': {
-            'Access-Control-Allow-Origin': '*',  # Or specify your domain
-            'Access-Control-Allow-Methods': 'OPTIONS,GET,POST',
-            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-        },
-        'body': json.dumps({'visitor_count': visitor_count})
+        'body': json.dumps({'visitor_count': int(visitor_count)})  # Convert Decimal to int
     }

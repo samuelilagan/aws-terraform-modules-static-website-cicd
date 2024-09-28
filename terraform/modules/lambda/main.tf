@@ -4,7 +4,7 @@ resource "aws_lambda_function" "visitor_counter_lambda" {
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.9"
 
-  filename      = "${path.module}/lambda_function.zip"
+  filename      = "${path.module}/lambda_function.zip" 
 
   environment {
     variables = {
